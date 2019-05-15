@@ -18,11 +18,6 @@ install:
        && wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-$SONAR_SCANNER_VERSION.zip \
        && unzip sonar-scanner-cli-$SONAR_SCANNER_VERSION.zip || echo 'Skipping Sonar Scanner installation'
 
-addons:
-  sonarcloud:
-    organization: "e6d24974bc2fdd19e72c18c4260f8e0dd267e8ec"
-    token:
-      secure: e6d24974bc2fdd19e72c18c4260f8e0dd267e8ec
 
 # command to run tests
 script:
@@ -30,11 +25,11 @@ script:
 after_success:
   - |
     test "$WITH_SONAR_ANALYSIS" = "true" && sonar-scanner-$SONAR_SCANNER_VERSION/bin/sonar-scanner \
-      -Dsonar.projectKey=mickfGit_oauth1-signer-python-1 \
-      -Dsonar.organization=mickfgit-github \
+      -Dsonar.projectName=$SONAR_PROJECT_NAME \
+      -Dsonar.projectKey=$SONAR_PROJECT_KEY \
+      -Dsonar.organization=$SONAR_ORGANIZATION_KEY \
       -Dsonar.sources=./oauth1 \
       -Dsonar.tests=./tests \
-      -Dsonar.python.coverage.reportPaths=coverage-reports/coverage-1.xml \
+      -Dsonar.python.coverage.reportPaths=coverage.xml \
       -Dsonar.host.url=https://sonarcloud.io \
-      -Dsonar.login=e6d24974bc2fdd19e72c18c4260f8e0dd267e8ec
-
+      -Dsonar.login=$SONAR_TOKEN || echo 'Skipping Sonar Scanner execution'
