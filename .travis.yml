@@ -27,7 +27,7 @@ after_success:
   - |
     test "$WITH_SONAR_ANALYSIS" = "true" && sonar-scanner-$SONAR_SCANNER_VERSION/bin/sonar-scanner \
       -Dsonar.projectName=$SONAR_PROJECT_NAME \
-      -Dsonar.projectKey=$SONAR_PROJECT_KEY \
+      -Dsonar.projectKey=mickfGit_oauth1-signer-python-1 \
       -Dsonar.organization=$SONAR_ORGANIZATION_KEY \
       -Dsonar.sources=./oauth1 \
       -Dsonar.tests=./tests \
