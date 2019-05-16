@@ -27,10 +27,10 @@ after_success:
   - |
     test "$WITH_SONAR_ANALYSIS" = "true" && sonar-scanner-$SONAR_SCANNER_VERSION/bin/sonar-scanner \
       -Dsonar.projectName=$SONAR_PROJECT_NAME \
-      -Dsonar.projectKey=mickfGit_oauth1-signer-python-1 \
-      -Dsonar.organization=mickfgit-github \
+      -Dsonar.projectKey=$SONAR_PROJECT_KEY \
+      -Dsonar.organization=$SONAR_ORGANIZATION_KEY  \
       -Dsonar.sources=./oauth1 \
       -Dsonar.tests=./tests \
       -Dsonar.python.coverage.reportPaths=./coverage.xml \
-      -Dsonar.host.url=https://sonarcloud.io \
+      -Dsonar.host.url=$SONAR_URL \
       -Dsonar.login=$SONAR_TOKEN
