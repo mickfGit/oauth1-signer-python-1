@@ -33,5 +33,4 @@ after_success:
       -Dsonar.tests=./tests \
       -Dsonar.python.coverage.reportPaths=./coverage.xml \
       -Dsonar.host.url=https://sonarcloud.io \
-      -Dsonar.login=e6d24974bc2fdd19e72c18c4260f8e0dd267e8ec
-
+      -Dsonar.login=$SONAR_TOKEN
